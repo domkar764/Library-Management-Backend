@@ -16,14 +16,14 @@ public class BookController {
     private BookService bookService;
 
 //  Get all books
-    @GetMapping("/user/books")
+    @GetMapping("/user/{userId}/books")
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookService.getAllBooks();
         return ResponseEntity.ok(books);
 }
 
 //  Borrowing Book
-    @PostMapping("/user/{userId}")
+    @PostMapping("/user/{userId}/books")
     public ResponseEntity<String> borrowBook(@PathVariable int userId, @RequestBody int bookId) {
     String response = bookService.borrowBook(userId, bookId);
     return new ResponseEntity<>(response, HttpStatus.OK);
